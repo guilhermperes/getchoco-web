@@ -55,11 +55,23 @@
   <script>
     
     $(".range").change(function() {
+
+      var motor  = $(this).attr("data-content");
+      var angulo = $(this).val();
       
-      $.post("https://getchoco-api-alanpinhel.c9users.io/acao", {
-        motor: $(this).attr("data-content"),
-        angulo: $(this).val()
-      });
+    
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://getchoco-api-alanpinhel.c9users.io/acao",
+        "method": "POST",
+        "headers": {
+          "content-type": "application/json"
+        },
+        "data": "{\"motor\": \"" + motor + "\", \"angulo\": \"" + angulo + "\"}"
+      };
+      
+      $.ajax(settings);
       
     });
     
